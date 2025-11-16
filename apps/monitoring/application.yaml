@@ -9,6 +9,7 @@ spec:
     namespace: monitoring
   source:
     repoURL: https://github.com/prometheus-community/helm-charts
+    path: apps/monitoring
     targetRevision: kube-prometheus-stack-79.5.0   # Example stable chart; change as needed
     chart: kube-prometheus-stack
     helm:
