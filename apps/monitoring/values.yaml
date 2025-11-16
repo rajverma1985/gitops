@@ -1,0 +1,34 @@
+grafana:
+  enabled: true
+  adminPassword: admin
+  service:
+    type: ClusterIP
+
+prometheus:
+  prometheusSpec:
+    retention: 15d
+    scrapeInterval: 30s
+    enableAdminAPI: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+alertmanager:
+  alertmanagerSpec:
+    replicas: 1
+
+nodeExporter:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+# Minimal resource footprint for minikube
+defaultRules:
+  create: true
+
+prometheusOperator:
+  enabled: true
+
+# Turn on the ServiceMonitor and PodMonitor controllers
+prometheusOperator:
+  admissionWebhooks:
+    enabled: true
