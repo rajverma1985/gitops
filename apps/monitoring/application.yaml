@@ -8,10 +8,10 @@ spec:
     server: https://kubernetes.default.svc
     namespace: monitoring
   source:
-    repoURL: https://github.com/prometheus-community/helm-charts
+    repoURL: https://prometheus-community.github.io/helm-charts
     path: apps/monitoring
     targetRevision: kube-prometheus-stack-79.5.0   # Example stable chart; change as needed
-    chart: kube-prometheus-stack
+    chart: prometheus-community/kube-prometheus-stack
     helm:
       valueFiles:
         - values.yaml
