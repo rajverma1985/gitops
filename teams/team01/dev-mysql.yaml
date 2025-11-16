@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: team-foo-dev-mysql
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: team-foo-dev
+  source:
+    repoURL: 'https://github.com/rajverma1985/gitops.git'
+    chart: mysql
+    helm:
+      repoURL: https://charts.bitnami.com/bitnami
+      releaseName: team-foo-mysql-dev
+      values: |
+        primary:
+          persistence:
+            enabled: true
+            size: 5Gi
+        auth:
+          database: team_foo_db
+          username: tf_user
+          password: supersecretdevpassword
+        service:
+          type: ClusterIP
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
